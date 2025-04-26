@@ -35,6 +35,7 @@ class DownloadTile extends HookWidget {
           return null;
         }
     }
+    return null;
   }
 
   @override

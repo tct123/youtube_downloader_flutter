@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:path/path.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:youtube_downloader_flutter/l10n/app_localizations.dart';
 import 'package:youtube_downloader_flutter/main.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
@@ -468,6 +468,7 @@ class DownloadManagerImpl extends ChangeNotifier implements DownloadManager {
       return path;
     }
     await file.delete();
+    return null;
   }
 
   factory DownloadManagerImpl.init(SharedPreferences prefs) {

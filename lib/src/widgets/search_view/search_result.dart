@@ -49,8 +49,8 @@ class LandscapeSearch extends HookWidget {
 
     return Scrollbar(
       controller: controller,
-      showTrackOnHover: false,
-      isAlwaysShown: true,
+      trackVisibility: false,
+      thumbVisibility: true,
       child: GridView.builder(
         controller: controller,
         padding: const EdgeInsets.all(10),
@@ -104,7 +104,7 @@ class LandscapeSearch extends HookWidget {
                                   _formatDuration(video.duration),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1
+                                      .bodyLarge
                                       ?.copyWith(
                                           fontSize: 11, color: Colors.white),
                                 ),
@@ -117,7 +117,7 @@ class LandscapeSearch extends HookWidget {
                           video.title,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.copyWith(fontSize: 15),
                           textAlign: TextAlign.start,
                           maxLines: 2,
@@ -133,7 +133,7 @@ class LandscapeSearch extends HookWidget {
                               '${AppLocalizations.of(context)!.author}: ${video.author}',
                               style: Theme.of(context)
                                   .textTheme
-                                  .subtitle1
+                                  .titleMedium
                                   ?.copyWith(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold),
@@ -222,7 +222,7 @@ class PortraitSearch extends StatelessWidget {
                               _formatDuration(video.duration),
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.copyWith(fontSize: 11, color: Colors.white),
                             ),
                           )),
@@ -233,7 +233,7 @@ class PortraitSearch extends StatelessWidget {
                     video.title,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
+                        .bodyLarge
                         ?.copyWith(fontSize: 15),
                     textAlign: TextAlign.start,
                     onTap: () {
@@ -247,7 +247,7 @@ class PortraitSearch extends StatelessWidget {
                     video.author,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle1
+                        .titleMedium
                         ?.copyWith(fontSize: 13),
                   ),
                   const SizedBox(height: 4),

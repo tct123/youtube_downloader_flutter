@@ -134,7 +134,7 @@ class StreamsList extends HookConsumerWidget {
         if (merger.audio != null && merger.video != null)
           OutlinedButton(
               style: ButtonStyle(
-                  padding: MaterialStateProperty.all<EdgeInsets>(
+                  padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.all(20))),
               onPressed: () {
                 downloadManager.downloadStream(yt, video, settings,

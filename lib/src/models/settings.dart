@@ -90,7 +90,7 @@ class SettingsImpl implements Settings {
 
     var langCode = prefs.getString('locale');
     if (langCode == null) {
-      final defaultLang = WidgetsBinding.instance!.window.locales.first;
+      final defaultLang = WidgetsBinding.instance.window.locales.first;
       langCode = defaultLang.languageCode;
       prefs.setString('locale', defaultLang.languageCode);
     }
