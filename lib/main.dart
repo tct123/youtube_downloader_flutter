@@ -28,21 +28,21 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      observers: [MainObserver()],
-      child: const AppInit(),
-    );
+    return ProviderScope(observers: [MainObserver()], child: const AppInit());
   }
 }
 
 class MainObserver implements ProviderObserver {
   @override
   void didAddProvider(
-      ProviderBase provider, Object? value, ProviderContainer container) {
+    ProviderBase provider,
+    Object? value,
+    ProviderContainer container,
+  ) {
     debugPrint('Added: $provider : $value(${value.runtimeType})');
   }
 
@@ -52,8 +52,12 @@ class MainObserver implements ProviderObserver {
   }
 
   @override
-  void didUpdateProvider(ProviderBase provider, Object? previousValue,
-      Object? newValue, ProviderContainer container) {
+  void didUpdateProvider(
+    ProviderBase provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
     debugPrint('Update: $provider : $newValue');
   }
 }
@@ -82,9 +86,7 @@ class AppInit extends HookConsumerWidget {
       return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Youtube Downloader',
-        home: Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        ),
+        home: Scaffold(body: Center(child: CircularProgressIndicator())),
       );
     }
 

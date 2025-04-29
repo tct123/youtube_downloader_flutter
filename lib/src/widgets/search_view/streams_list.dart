@@ -53,7 +53,7 @@ class StreamsList extends HookConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    final filteredList = filterStream(manifest.data!, filter.value);
+    final filteredList = filterStream(manifest.data, filter.value);
 
     return AlertDialog(
       contentPadding: const EdgeInsets.only(top: 9),

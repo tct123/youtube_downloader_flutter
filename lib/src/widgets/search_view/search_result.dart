@@ -164,8 +164,7 @@ class PortraitSearch extends StatelessWidget {
   final String query;
   final SearchService service;
 
-  const PortraitSearch({required this.query, required this.service, Key? key})
-      : super(key: key);
+  const PortraitSearch({required this.query, required this.service, super.key});
 
   @override
   Widget build(BuildContext context) {
