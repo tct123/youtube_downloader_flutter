@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../providers.dart';
 
 class DownloadsPage extends HookConsumerWidget {
-  const DownloadsPage({Key? key}) : super(key: key);
+  const DownloadsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,12 +19,12 @@ class DownloadsPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: DownloadsAppBar()),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: DownloadsAppBar(),
+      ),
       body: ListView.separated(
-        separatorBuilder: (BuildContext context, int index) => const Divider(
-          height: 0,
-        ),
+        separatorBuilder:
+            (BuildContext context, int index) => const Divider(height: 0),
         itemCount: length,
         itemBuilder: (BuildContext context, int index) {
           final video = downloadManager.videos[(length - 1) - index];
@@ -36,7 +36,7 @@ class DownloadsPage extends HookConsumerWidget {
 }
 
 class DownloadsAppBar extends HookWidget {
-  const DownloadsAppBar({Key? key}) : super(key: key);
+  const DownloadsAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +46,20 @@ class DownloadsAppBar extends HookWidget {
         child: Container(
           padding: const EdgeInsets.only(left: 10),
           height: kToolbarHeight,
-          child: Row(children: [
-            IconButton(
+          child: Row(
+            children: [
+              IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop()),
-            Center(
-              child: Text(
-                AppLocalizations.of(context)!.downloads,
-                style: Theme.of(context).textTheme.headlineSmall,
+                onPressed: () => Navigator.of(context).pop(),
               ),
-            ),
-          ]),
+              Center(
+                child: Text(
+                  AppLocalizations.of(context)!.downloads,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

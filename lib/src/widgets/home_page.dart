@@ -8,7 +8,7 @@ import 'package:youtube_downloader_flutter/src/search_bar.dart';
 
 @immutable
 class HomePage extends HookWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,9 @@ class HomePage extends HookWidget {
       body: Center(child: Text(AppLocalizations.of(context)!.startSearch)),
       drawer: const AppDrawer(),
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight), child: SearchBar()),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: SearchBar(),
+      ),
     );
   }
 }

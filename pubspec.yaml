@@ -35,22 +35,22 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  intl: any
-  flutter_localization: any
-  flutter_hooks: any
-  hooks_riverpod: any
-  shared_preferences: any
-  win32: any
-  window_size: any
-  flutter_ffmpeg: any
-  json_annotation: any
-  path: any
-  permission_handler: any
-  youtube_explode_dart: any
-  path_provider: any
-  open_file: any
-  auto_size_text: any
-  file_picker: any
+  intl: 0.20.2
+  flutter_localization: 0.3.3
+  flutter_hooks: 0.21.3
+  hooks_riverpod: 2.6.1
+  shared_preferences: 2.5.3
+  win32: 5.14.0
+  window_size: 0.1.0
+  flutter_ffmpeg: 0.4.2
+  json_annotation: 4.9.0
+  path: 1.9.1
+  permission_handler: 12.0.1
+  youtube_explode_dart: 2.5.2
+  path_provider: 2.1.5
+  open_file: 3.5.10
+  auto_size_text: 3.0.0
+  file_picker: 10.3.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

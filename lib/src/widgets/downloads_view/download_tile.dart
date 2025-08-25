@@ -9,7 +9,7 @@ import 'package:youtube_downloader_flutter/src/providers.dart';
 class DownloadTile extends HookWidget {
   final SingleTrack video;
 
-  const DownloadTile(this.video, {Key? key}) : super(key: key);
+  const DownloadTile(this.video, {super.key});
 
   String? getFileType(SingleTrack video) {
     final path = video.path;
@@ -42,22 +42,31 @@ class DownloadTile extends HookWidget {
   Widget build(BuildContext context) {
     final video = useListenable(this.video);
     return ListTile(
-        onTap:
-            video.downloadStatus == DownloadStatus.success ? _openFile : null,
-        title: Text(video.title,
-            style: video.downloadStatus == DownloadStatus.canceled ||
+      onTap: video.downloadStatus == DownloadStatus.success ? _openFile : null,
+      title: Text(
+        video.title,
+        style:
+            video.downloadStatus == DownloadStatus.canceled ||
                     video.downloadStatus == DownloadStatus.failed
                 ? const TextStyle(decoration: TextDecoration.lineThrough)
-                : null),
-        subtitle: video.downloadStatus == DownloadStatus.failed
-            ? Text(video.error)
-            : Text(video.path,
-                style: video.downloadStatus == DownloadStatus.canceled ||
-                        video.downloadStatus == DownloadStatus.failed
-                    ? const TextStyle(decoration: TextDecoration.lineThrough)
-                    : null),
-        trailing: TrailingIcon(video),
-        leading: LeadingIcon(video));
+                : null,
+      ),
+      subtitle:
+          video.downloadStatus == DownloadStatus.failed
+              ? Text(video.error)
+              : Text(
+                video.path,
+                style:
+                    video.downloadStatus == DownloadStatus.canceled ||
+                            video.downloadStatus == DownloadStatus.failed
+                        ? const TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                        )
+                        : null,
+              ),
+      trailing: TrailingIcon(video),
+      leading: LeadingIcon(video),
+    );
   }
 
   Future<void> _openFile() async {
@@ -68,7 +77,7 @@ class DownloadTile extends HookWidget {
 class LeadingIcon extends HookWidget {
   final SingleTrack video;
 
-  const LeadingIcon(this.video, {Key? key}) : super(key: key);
+  const LeadingIcon(this.video, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +101,7 @@ class LeadingIcon extends HookWidget {
 class TrailingIcon extends HookConsumerWidget {
   final SingleTrack video;
 
-  const TrailingIcon(this.video, {Key? key}) : super(key: key);
+  const TrailingIcon(this.video, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -101,40 +110,45 @@ class TrailingIcon extends HookConsumerWidget {
     switch (video.downloadStatus) {
       case DownloadStatus.downloading:
         return IconButton(
-            icon: const Icon(Icons.cancel),
-            onPressed: () async {
-              video.cancelDownload();
-            });
+          icon: const Icon(Icons.cancel),
+          onPressed: () async {
+            video.cancelDownload();
+          },
+        );
       case DownloadStatus.success:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-                icon: const Icon(Icons.folder_open),
-                onPressed: () async {
-                  final res = await OpenFile.open(path.dirname(video.path));
-                  debugPrint('R: ${res.type} | M: ${res.message}');
-                }),
+              icon: const Icon(Icons.folder_open),
+              onPressed: () async {
+                final res = await OpenFile.open(path.dirname(video.path));
+                debugPrint('R: ${res.type} | M: ${res.message}');
+              },
+            ),
             IconButton(
-                icon: const Icon(Icons.delete_forever),
-                onPressed: () async {
-                  downloadManager.removeVideo(video);
-                }),
+              icon: const Icon(Icons.delete_forever),
+              onPressed: () async {
+                downloadManager.removeVideo(video);
+              },
+            ),
           ],
         );
       case DownloadStatus.muxing:
         return IconButton(
-            icon: const Icon(Icons.cancel),
-            onPressed: () async {
-              video.cancelDownload();
-            });
+          icon: const Icon(Icons.cancel),
+          onPressed: () async {
+            video.cancelDownload();
+          },
+        );
       case DownloadStatus.failed:
       case DownloadStatus.canceled:
         return IconButton(
-            icon: const Icon(Icons.delete_forever),
-            onPressed: () async {
-              downloadManager.removeVideo(video);
-            });
+          icon: const Icon(Icons.delete_forever),
+          onPressed: () async {
+            downloadManager.removeVideo(video);
+          },
+        );
     }
   }
 }

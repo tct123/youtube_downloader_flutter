@@ -8,7 +8,7 @@ import '../models/settings.dart';
 import '../providers.dart';
 
 class SettingsPage extends HookConsumerWidget {
-  SettingsPage({Key? key}) : super(key: key);
+  SettingsPage({super.key});
 
   static const ffmpegContainers = <DropdownMenuItem<String>>[
     DropdownMenuItem(value: '.mp4', child: Text('.mp4')),
@@ -104,7 +104,7 @@ class SettingsPage extends HookConsumerWidget {
 }
 
 class SettingsAppBar extends HookWidget {
-  const SettingsAppBar({Key? key}) : super(key: key);
+  const SettingsAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

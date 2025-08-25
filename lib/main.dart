@@ -65,7 +65,7 @@ class MainObserver implements ProviderObserver {
 class AppInit extends HookConsumerWidget {
   static final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
-  const AppInit({Key? key}) : super(key: key);
+  const AppInit({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

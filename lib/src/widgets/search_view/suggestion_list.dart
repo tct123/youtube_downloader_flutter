@@ -8,7 +8,7 @@ class SuggestionList extends HookConsumerWidget {
   final String query;
   final void Function(String) callback;
 
-  const SuggestionList(this.query, this.callback, {Key? key}) : super(key: key);
+  const SuggestionList(this.query, this.callback, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,9 +16,10 @@ class SuggestionList extends HookConsumerWidget {
     final debQuery = useDebounce(query, const Duration(milliseconds: 200));
 
     final suggestions = useMemoFuture(
-        () => yt.search.getQuerySuggestions(query),
-        initialData: const <String>[],
-        keys: [debQuery]);
+      () => yt.search.getQuerySuggestions(query),
+      initialData: const <String>[],
+      keys: [debQuery],
+    );
 
     return ListView.builder(
       itemCount: suggestions.data!.length,

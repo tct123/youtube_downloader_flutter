@@ -12,10 +12,11 @@ import 'streams_list.dart';
 
 class SearchResult extends HookConsumerWidget {
   late final searchProvider = StateProvider.autoDispose(
-      (ref) => SearchService(ref.read(ytProvider), query));
+    (ref) => SearchService(ref.read(ytProvider), query),
+  );
   final String query;
 
-  SearchResult({required this.query, Key? key}) : super(key: key);
+  SearchResult({required this.query, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,8 +39,11 @@ class LandscapeSearch extends HookWidget {
   final String query;
   final SearchService service;
 
-  const LandscapeSearch({required this.query, required this.service, Key? key})
-      : super(key: key);
+  const LandscapeSearch({
+    required this.query,
+    required this.service,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +75,9 @@ class LandscapeSearch extends HookWidget {
           return GestureDetector(
             onTap: () {
               showDialog(
-                  context: context, builder: (context) => StreamsList(video));
+                context: context,
+                builder: (context) => StreamsList(video),
+              );
             },
             child: Card(
               child: MouseRegion(
@@ -92,33 +98,37 @@ class LandscapeSearch extends HookWidget {
                             ),
                           ),
                           Positioned(
-                              right: 9,
-                              bottom: 9,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(.75),
-                                    borderRadius: BorderRadius.circular(4)),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 1),
-                                child: Text(
-                                  _formatDuration(video.duration),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
-                                          fontSize: 11, color: Colors.white),
+                            right: 9,
+                            bottom: 9,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(.75),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 3,
+                                vertical: 1,
+                              ),
+                              child: Text(
+                                _formatDuration(video.duration),
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodyLarge?.copyWith(
+                                  fontSize: 11,
+                                  color: Colors.white,
                                 ),
-                              )),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: AutoSizeText(
                           video.title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(fontSize: 15),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge?.copyWith(fontSize: 15),
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -130,17 +140,18 @@ class LandscapeSearch extends HookWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 17),
                           child: AutoSizeText(
-                              '${AppLocalizations.of(context)!.author}: ${video.author}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              minFontSize: 6),
+                            '${AppLocalizations.of(context)!.author}: ${video.author}',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleMedium?.copyWith(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            minFontSize: 6,
+                          ),
                         ),
                       ),
                     ],
@@ -177,10 +188,7 @@ class PortraitSearch extends StatelessWidget {
       itemBuilder: (context, index) {
         if (service.loading && index == videos.length) {
           return Column(
-            children: const [
-              SizedBox(height: 10),
-              CircularProgressIndicator(),
-            ],
+            children: const [SizedBox(height: 10), CircularProgressIndicator()],
           );
         }
         final video = videos[index];
@@ -190,7 +198,9 @@ class PortraitSearch extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             showDialog(
-                context: context, builder: (context) => StreamsList(video));
+              context: context,
+              builder: (context) => StreamsList(video),
+            );
           },
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
@@ -209,45 +219,46 @@ class PortraitSearch extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                          right: 9,
-                          bottom: 9,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(.75),
-                                borderRadius: BorderRadius.circular(4)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 3, vertical: 1),
-                            child: Text(
-                              _formatDuration(video.duration),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontSize: 11, color: Colors.white),
-                            ),
-                          )),
+                        right: 9,
+                        bottom: 9,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(.75),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 3,
+                            vertical: 1,
+                          ),
+                          child: Text(
+                            _formatDuration(video.duration),
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(fontSize: 11, color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 15),
                   SelectableText(
                     video.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(fontSize: 15),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(fontSize: 15),
                     textAlign: TextAlign.start,
                     onTap: () {
                       showDialog(
-                          context: context,
-                          builder: (context) => StreamsList(video));
+                        context: context,
+                        builder: (context) => StreamsList(video),
+                      );
                     },
                   ),
                   const SizedBox(height: 5),
                   Text(
                     video.author,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontSize: 13),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium?.copyWith(fontSize: 13),
                   ),
                   const SizedBox(height: 4),
                 ],
